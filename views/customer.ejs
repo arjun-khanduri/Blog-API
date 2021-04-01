@@ -17,6 +17,8 @@
             <a class="item">Logout</a>
         </div>
     </div>
+
+    <% if (blogs.length !==0) { %>
     <div class="login-card">
         <div class="ui raised very padded text container segment">
             <div class="ui divided items">
@@ -38,9 +40,23 @@
                                         class="angle right icon"></i></a>
                             </div>
                         </div>
+                        <div>
+                            <h4>
+                                <% if(blog.isApproved){%>
+                                    Approved <i class="check icon"></i>
+                                <% } else if(blog.isVerified){ %>
+                                    Approved and Verified <i class="check circle icon"></i>
+                                <% } %>
+                            </h4>
+                        </div>
                     </div>
                     <%});%>
             </div>
         </div>
     </div>
+    <% } else {%>
+        <div class = "login-card">
+            <h1> No blogs written yet </h1>
+        </div>
+    <% } %>
 </body>

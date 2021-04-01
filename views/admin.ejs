@@ -1,0 +1,49 @@
+<head>
+    <meta charset="utf-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="ui fixed inverted menu">
+        <div class="header item">
+            Blog API
+        </div>
+        <div class="right menu">
+            <a class="item">Logout</a>
+        </div>
+    </div>
+    <% if (blogs.length !==0) { %>
+        <div class="login-card">
+            <div class="ui raised very padded text container segment">
+                <div class="ui divided items">
+                    <%blogs.forEach(function(blog){%>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">
+                                    <h2 style="text-align:center;">
+                                        <%=blog.title%>
+                                    </h2>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        <%=blog.body%>
+                                    </p>
+                                </div>
+                                <div class="extra">
+                                    <a class="ui button positive" href="/admin/<%= blog._id %>/approve">Approve</a>
+                                </div>
+                            </div>
+                        </div>
+                        <%});%>
+                </div>
+            </div>
+        </div>
+        <% } else {%>
+            <div class = "login-card">
+                <h1> No blogs to approve </h1>
+            </div>
+        <% } %>
+</body>
