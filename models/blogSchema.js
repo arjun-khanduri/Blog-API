@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
-const blogSchema = new mongoose.Schema({
+const customerBlogSchema = new mongoose.Schema({
     title: String,
     body: String,
-    created: { type: Date, default: Date.now },
+    isApproved: false,
+    isVerified: false,
+    created: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('CustomerBlog', blogSchema);
+module.exports = mongoose.model('CustomerBlog', customerBlogSchema);

@@ -41,7 +41,9 @@ app.get('/customer/new', (req, res) => {
 app.post('/customer/new', (req, res) => {
     const title = req.body.title;
     const body = req.body.body;
-    const blog = { title: title, body: body };
+    const isVerified = false;
+    const isApproved = false;
+    const blog = { title: title, body: body, isApproved: isApproved, isVerified: isVerified};
     customerBlog.create(blog, (err, newBlog) => {
         if (err)
             res.render('new');
@@ -49,6 +51,16 @@ app.post('/customer/new', (req, res) => {
             res.redirect('/customer');
     });
 });
+
+app.get('/customer/:id', (req, res) => {
+    customerBlog.findById(req.params.id, (err, foundBlog) => {
+        if (err)
+            res.redirect('/customer');
+        else
+            res.render('show', { blog: foundBlog, title: foundBlog.title });
+    });
+});
+
 
 app.get('/admin', (req, res) => {
     res.send('Admin page');
