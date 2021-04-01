@@ -53,24 +53,20 @@ passport.deserializeUser((user, done) => {
 });
 
 isLoggedInAdmin = (req, res, next) => {
-    if (req.isAuthenticated() && req.user.type === 'Admin') {
+    if (req.isAuthenticated() && req.user.type === 'Admin')
         return next();
-    }
     res.redirect('/login/admin');
 }
 
 isLoggedInEmployee = (req, res, next) => {
-
-    if (req.isAuthenticated() && req.user.type === 'Employee') {
+    if (req.isAuthenticated() && req.user.type === 'Employee')
         return next();
-    }
     res.redirect('/login/employee');
 }
 
 isLoggedInCustomer = (req, res, next) => {
-    if (req.isAuthenticated() && req.user.type === 'Customer') {
+    if (req.isAuthenticated() && req.user.type === 'Customer')
         return next();
-    }
     res.redirect('/login/customer');
 }
 
@@ -173,9 +169,8 @@ app.get('/customer', isLoggedInCustomer, (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('customer', { blogs: foundBlogs });
+            res.render('customer', { blogs: foundBlogs, name: req.user.username });
     });
-
 });
 
 app.get('/customer/new', isLoggedInCustomer, (req, res) => {
