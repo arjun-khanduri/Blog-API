@@ -1,0 +1,46 @@
+<head>
+    <meta charset="utf-8">
+    <title>Customer: {Name of customer} </title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="ui fixed inverted menu">
+        <div class="header item">
+            Blog API
+        </div>
+        <a class="active item">Home</a>
+        <a href="/customer/new" class="item">New Blog</a>
+        <div class="right menu">
+            <a class="item">Logout</a>
+        </div>
+    </div>
+    <div class="login-card">
+        <div class="ui raised very padded text container segment">
+            <div class="ui divided items">
+                <%blogs.forEach(function(blog){%>
+                    <div id="blogdet" class="item">
+                        <div class="content">
+                            <div class="header">
+                                <h2 style="text-align:center;">
+                                    <%=blog.title%>
+                                </h2>
+                            </div>
+                            <div class="description">
+                                <p>
+                                    <%=blog.body.substring(0,blog.body.length*0.4)%>...
+                                </p>
+                            </div>
+                            <div class="extra">
+                                <a class="ui button" href="/customer/<%= blog._id %>">Read More<i
+                                        class="angle right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <%});%>
+            </div>
+        </div>
+    </div>
+</body>

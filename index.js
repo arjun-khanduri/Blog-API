@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const customerBlog = require('./models/blogSchema');
+
+mongoose.connect("mongodb://localhost:27017/Blog-API", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 app.use(express.static('public'));
-app.set('view engine','ejs');
-
-app.use(bodyParser.urlencoded({extended: true}));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
@@ -23,7 +25,29 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/customer', (req, res) => {
-    res.send('Customer page');
+    customerBlog.find({}, (err, foundBlogs) => {
+        if (err)
+            console.log(err);
+        else
+            res.render('customer', {blogs: foundBlogs});
+    });
+
+});
+
+app.get('/customer/new', (req, res) => {
+    res.render('new');
+});
+
+app.post('/customer/new', (req, res) => {
+    const title = req.body.title;
+    const body = req.body.body;
+    const blog = { title: title, body: body };
+    customerBlog.create(blog, (err, newBlog) => {
+        if (err)
+            res.render('new');
+        else
+            res.redirect('/customer');
+    });
 });
 
 app.get('/admin', (req, res) => {
