@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8">
-    <title>Admin Panel</title>
+    <title>Employee: {Employee Name}</title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
     <link rel="stylesheet" href="/css/main.css">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
@@ -33,7 +33,7 @@
                                     </p>
                                 </div>
                                 <div class="extra">
-                                    <a class="ui button yellow" href="/admin/<%= blog._id %>/approve">Approve</a>
+                                    <a class="ui button positive" href="/employee/<%= blog._id %>/verify">Verify</a>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
         </div>
         <% } else {%>
             <div class = "login-card">
-                <h1> No blogs to approve </h1>
+                <h1> No blogs to verify </h1>
             </div>
         <% } %>
 </body>

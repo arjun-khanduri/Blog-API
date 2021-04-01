@@ -63,7 +63,7 @@ app.get('/customer/:id', (req, res) => {
 
 
 app.get('/admin', (req, res) => {
-    customerBlog.find({ isApproved: false }, (err, foundBlogs) => {
+    customerBlog.find({ isVerified: false, isApproved: false }, (err, foundBlogs) => {
         if (err)
             console.log(err);
         else
@@ -72,14 +72,26 @@ app.get('/admin', (req, res) => {
 });
 
 app.get('/admin/:id/approve', (req, res) => {
-    const approved = { $set: { isApproved: true} };
+    const approved = { $set: { isApproved: true } };
     customerBlog.findByIdAndUpdate(req.params.id, approved, (err, foundBlogs) => {
         res.redirect('/admin');
     });
 });
 
 app.get('/employee', (req, res) => {
-    res.send('Employee page');
+    customerBlog.find({ isApproved: true, isVerified: false }, (err, foundBlogs) => {
+        if (err)
+            console.log(err);
+        else
+            res.render('employee', { blogs: foundBlogs });
+    });
+});
+
+app.get('/employee/:id/verify', (req, res) => {
+    const verified = { $set: { isVerified: true } };
+    customerBlog.findByIdAndUpdate(req.params.id, verified, (err, foundBlogs) => {
+        res.redirect('/employee');
+    });
 });
 
 app.listen(8000, (req, res) => {

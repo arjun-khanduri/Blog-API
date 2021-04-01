@@ -42,9 +42,9 @@
                         </div>
                         <div>
                             <h4>
-                                <% if(blog.isApproved){%>
+                                <% if(blog.isApproved && !blog.isVerified){%>
                                     Approved <i class="check icon"></i>
-                                <% } else if(blog.isVerified){ %>
+                                <% } if(blog.isApproved && blog.isVerified){ %>
                                     Approved and Verified <i class="check circle icon"></i>
                                 <% } %>
                             </h4>
