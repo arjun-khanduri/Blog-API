@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const customerBlogSchema = new mongoose.Schema({
+const blogSchema = new mongoose.Schema({
     title: String,
     body: String,
     isApproved: false,
@@ -8,4 +8,4 @@ const customerBlogSchema = new mongoose.Schema({
     created: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('CustomerBlog', customerBlogSchema);
+module.exports = mongoose.model('Blog', blogSchema);

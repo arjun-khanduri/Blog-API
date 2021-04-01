@@ -14,7 +14,7 @@
         <a class="active item">Home</a>
         <a href="/customer/new" class="item">New Blog</a>
         <div class="right menu">
-            <a class="item">Logout</a>
+            <a href="/logout" class="item">Logout</a>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
                             </div>
                             <div class="description">
                                 <p>
-                                    <%=blog.body.substring(0,blog.body.length*0.4)%>...
+                                    <%=blog.body.substring(0,50)%>...
                                 </p>
                             </div>
                             <div class="extra">

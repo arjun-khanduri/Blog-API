@@ -1,0 +1,27 @@
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="ui raised very padded text container segment">
+            <p style="text-align: center" class="ui huge header">Admin Login</p>
+            <form class="ui form" method="POST" action="/login/admin">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <button id="submit-btn" name="submit" class="ui primary button"
+                    type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
