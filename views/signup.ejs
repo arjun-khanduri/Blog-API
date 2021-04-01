@@ -13,19 +13,19 @@
             <form class="ui form" method="POST">
                 <div class="field">
                     <label>Username</label>
-                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Password" name="password1" minlength="6" required>
                 </div>
                 <div class="field">
                     <label>Confirm Password</label>
-                    <input type="password" name="password" placeholder="Confirm Password">
+                    <input type="password" name="password" placeholder="Confirm Password" minlength="6" required>
                 </div>
                 <div class="field">
                     <label>Select Designation</label>
-                    <select name="type">
+                    <select name="type" required>
                         <option>Customer</option>
                         <option>Employee</option>
                         <option>Admin</option>

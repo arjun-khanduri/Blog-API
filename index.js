@@ -117,6 +117,9 @@ app.get('/signup', (req, res) => {
 
 app.post('/signup', (req, res) => {
     const type = req.body.type;
+    const p1 = req.body.password1;
+    const p2 = req.body.password;
+    if(p1 === p2){
     if (type === 'Customer') {
         const newUser = new customerUser({ username: req.body.username, type: 'Customer' });;
         customerUser.register(newUser, req.body.password, (err, user) => {
@@ -155,6 +158,11 @@ app.post('/signup', (req, res) => {
             });
         });
     }
+}
+else{
+    console.log('Password error');
+    res.redirect('/');
+}
 
 });
 

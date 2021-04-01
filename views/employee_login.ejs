@@ -13,11 +13,11 @@
             <form class="ui form" method="POST" action="/login/employee">
                 <div class="field">
                     <label>Username</label>
-                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="password" name="password" placeholder="Password">
+                    <input type="password" name="password" placeholder="Password" minlength="6" required>
                 </div>
                 <button id="submit-btn" name="submit" class="ui primary button"
                     type="submit">Submit</button>
