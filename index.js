@@ -72,7 +72,7 @@ isLoggedInCustomer = (req, res, next) => {
 
 
 app.get('/', (req, res) => {
-    res.redirect('/login/admin');
+    res.render('landing');
 });
 
 app.get('/login/admin', (req, res) => {
