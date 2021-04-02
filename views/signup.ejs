@@ -7,6 +7,22 @@
 </head>
 
 <body>
+    <div style="margin-top: 1.0em;">
+        <div class="ui container">
+            <% if(error && error.length> 0) {%>
+                <div class="ui visible message red" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+                    <% if(success && success.length> 0){ %>
+                        <div class="ui visible message green" role="alert">
+                            <%= success %>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+
+
     <div class="login-card">
         <div class="ui raised very padded text container segment">
             <p style="text-align: center" class="ui huge header">Signup</p>

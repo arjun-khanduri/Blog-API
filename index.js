@@ -4,14 +4,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const flash = require('connect-flash');
 const Blog = require('./models/blogSchema');
 const adminUser = require('./models/adminUserSchema');
 const customerUser = require('./models/customerUserSchema');
 const employeeUser = require('./models/employeeUserSchema');
 
 mongoose.connect("mongodb://localhost:27017/Blog-API", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
-
-
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -22,9 +21,10 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 passport.use('adminLocal', new LocalStrategy(adminUser.authenticate()));
 passport.use('customerLocal', new LocalStrategy(customerUser.authenticate()));
 passport.use('employeeLocal', new LocalStrategy(employeeUser.authenticate()));
@@ -50,6 +50,13 @@ passport.deserializeUser((user, done) => {
             done(err, user);
         });
     }
+});
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
+    next();
 });
 
 isLoggedInAdmin = (req, res, next) => {
@@ -119,50 +126,59 @@ app.post('/signup', (req, res) => {
     const type = req.body.type;
     const p1 = req.body.password1;
     const p2 = req.body.password;
-    if(p1 === p2){
-    if (type === 'Customer') {
-        const newUser = new customerUser({ username: req.body.username, type: 'Customer' });;
-        customerUser.register(newUser, req.body.password, (err, user) => {
-            if (err) {
-                console.log(err);
-                res.redirect('/');
-            }
-            passport.authenticate('customerLocal')(req, res, () => {
-                res.redirect('/customer');
+    if (p1 === p2) {
+        if (type === 'Customer') {
+            const newUser = new customerUser({ username: req.body.username, type: 'Customer' });;
+            customerUser.register(newUser, req.body.password, (err, user) => {
+                if (err) {
+                    req.flash('error', err.message);
+                    res.redirect('/signup');
+                }
+                else {
+                    passport.authenticate('customerLocal')(req, res, () => {
+                        req.flash('success', 'Welcome, ' + req.user.username + '!');
+                        res.redirect('/customer');
+                    });
+                }
             });
-        });
-    }
+        }
 
-    else if (type === 'Admin') {
-        const newUser = new adminUser({ username: req.body.username, type: 'Admin' });
-        adminUser.register(newUser, req.body.password, (err, user) => {
-            if (err) {
-                console.log(err);
-                res.redirect('/');
-            }
-            passport.authenticate('adminLocal')(req, res, () => {
-                res.redirect('/admin');
+        else if (type === 'Admin') {
+            const newUser = new adminUser({ username: req.body.username, type: 'Admin' });
+            adminUser.register(newUser, req.body.password, (err, user) => {
+                if (err) {
+                    req.flash('error', err.message);
+                    res.redirect('/');
+                }
+                else {
+                    passport.authenticate('adminLocal')(req, res, () => {
+                        req.flash('success', 'Welcome, ' + req.user.username + '!');
+                        res.redirect('/admin');
+                    });
+                }
             });
-        });
-    }
+        }
 
-    else if (type === 'Employee') {
-        const newUser = new employeeUser({ username: req.body.username, type: 'Employee' });
-        employeeUser.register(newUser, req.body.password, (err, user) => {
-            if (err) {
-                console.log(err);
-                res.redirect('/');
-            }
-            passport.authenticate('employeeLocal')(req, res, () => {
-                res.redirect('/employee');
+        else if (type === 'Employee') {
+            const newUser = new employeeUser({ username: req.body.username, type: 'Employee' });
+            employeeUser.register(newUser, req.body.password, (err, user) => {
+                if (err) {
+                    req.flash('error', err.message);
+                    res.redirect('/');
+                }
+                else {
+                    passport.authenticate('employeeLocal')(req, res, () => {
+                        req.flash('success', 'Welcome, ' + req.user.username + '!');
+                        res.redirect('/employee');
+                    });
+                }
             });
-        });
+        }
     }
-}
-else{
-    console.log('Password error');
-    res.redirect('/');
-}
+    else {
+        req.flash('error', 'Passwords do not match');
+        res.redirect('/signup');
+    }
 
 });
 

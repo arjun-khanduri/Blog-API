@@ -1,12 +1,28 @@
 <head>
     <meta charset="utf-8">
-    <title>Customer: <%=name%> </title>
+    <title>Customer: <%=name%>
+    </title>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
     <link rel="stylesheet" href="/css/main.css">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
+    <div style="margin-top: 5em;">
+        <div class="ui container">
+            <% if(error && error.length> 0) {%>
+                <div class="ui visible message red" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+                    <% if(success && success.length> 0){ %>
+                        <div class="ui visible message green" role="alert">
+                            <%= success %>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+
     <div class="ui fixed inverted menu">
         <div class="header item">
             Blog API
@@ -19,44 +35,44 @@
     </div>
 
     <% if (blogs.length !==0) { %>
-    <div class="login-card">
-        <div class="ui raised very padded text container segment">
-            <div class="ui divided items">
-                <%blogs.forEach(function(blog){%>
-                    <div class="item">
-                        <div class="content">
-                            <div class="header">
-                                <h2 style="text-align:center;">
-                                    <%=blog.title%>
-                                </h2>
+        <div class="login-card">
+            <div class="ui raised very padded text container segment">
+                <div class="ui divided items">
+                    <%blogs.forEach(function(blog){%>
+                        <div class="item">
+                            <div class="content">
+                                <div class="header">
+                                    <h2 style="text-align:center;">
+                                        <%=blog.title%>
+                                    </h2>
+                                </div>
+                                <div class="description">
+                                    <p>
+                                        <%=blog.body.substring(0,50)%>...
+                                    </p>
+                                </div>
+                                <div class="extra">
+                                    <a class="ui button" href="/customer/<%= blog._id %>">Read More<i
+                                            class="angle right icon"></i></a>
+                                </div>
                             </div>
-                            <div class="description">
-                                <p>
-                                    <%=blog.body.substring(0,50)%>...
-                                </p>
-                            </div>
-                            <div class="extra">
-                                <a class="ui button" href="/customer/<%= blog._id %>">Read More<i
-                                        class="angle right icon"></i></a>
+                            <div>
+                                <h4>
+                                    <% if(blog.isApproved && !blog.isVerified){%>
+                                        Approved <i class="check icon"></i>
+                                        <% } if(blog.isApproved && blog.isVerified){ %>
+                                            Approved and Verified <i class="check circle icon"></i>
+                                            <% } %>
+                                </h4>
                             </div>
                         </div>
-                        <div>
-                            <h4>
-                                <% if(blog.isApproved && !blog.isVerified){%>
-                                    Approved <i class="check icon"></i>
-                                <% } if(blog.isApproved && blog.isVerified){ %>
-                                    Approved and Verified <i class="check circle icon"></i>
-                                <% } %>
-                            </h4>
-                        </div>
-                    </div>
-                    <%});%>
+                        <%});%>
+                </div>
             </div>
         </div>
-    </div>
-    <% } else {%>
-        <div class = "login-card">
-            <h1> No blogs written yet </h1>
-        </div>
-    <% } %>
+        <% } else {%>
+            <div class="login-card">
+                <h1> No blogs written yet </h1>
+            </div>
+            <% } %>
 </body>
