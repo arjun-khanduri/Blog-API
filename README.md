@@ -1,14 +1,24 @@
 # Pixel-Mind-It-Solutions-API
 
-## Instructions:
+## Instructions to deploy locally:
 
+Make sure you have Node.js and MongoDB installed on your machine.
 
-#### Build Api's for-
-#### * User login & Sign up With validation ( # Types of user based on role - 1)admin 2)employee 3)customer.
-#### * Firstly customer should post a blog.
-#### * Then blog can be approved by Admin.
-#### * Once approved by Admin it should redirect for employee approval.
-#### * Once approved by both,The status should be changed to verified.
-#### * At last customer can see whether the blog was approved.
-#### Candidates will be let to use any database,schema design is upto your approach.
-#### Happy Coding !!!
+Follow the commands to clone the repository on your local machine.
+
+```sh
+git clone https://github.com/arjun-khanduri/Pixel-Mind-It-Solutions-API.git
+cd Pixel-Mind-It-Solutions-API
+```
+To install all dependancies for the application, run the following command
+
+```sh
+npm install
+```
+To deploy the application run the following command,
+
+```sh
+node index.js
+```
+
+The application is now running at [localhost:8000](http://localhost:8000/).
