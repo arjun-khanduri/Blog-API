@@ -7,28 +7,35 @@
 </head>
 
 <body>
-    <!-- <div class="login-card">
-        <h2>Login</h2>
-        <a class="ui button" href="/login/customer">As Customer</a>
-        <a class="ui button yellow" href="/login/admin">As Admin</a>
-        <a class="ui button green" href="/login/employee">As Employee</a>
-        <hr>
-        <h5>Not one of these?</h5>
-        <a class="ui primary button" href="/signup">Signup</a>
-    </div> -->
-<div class="login-card">
-    <div class="ui center aligned basic segment">
-        <h2>Login</h2>
-        <div class="ui left icon action input">
-            <a class="ui button" href="/login/customer">As Customer</a>
-            <a class="ui button yellow" href="/login/admin">As Admin</a>
-            <a class="ui button green" href="/login/employee">As Employee</a>
+
+    <div style="margin-top: 5em;">
+        <div class="ui container">
+            <% if(error && error.length> 0) {%>
+                <div class="ui visible message red" role="alert">
+                    <%= error %>
+                </div>
+                <% } %>
+                    <% if(success && success.length> 0){ %>
+                        <div class="ui visible message green" role="alert">
+                            <%= success %>
+                        </div>
+                        <% } %>
         </div>
-        <div class="ui horizontal divider">
-          Or
+    </div>
+
+    <div class="login-card">
+        <div class="ui center aligned basic segment">
+            <h2>Login</h2>
+            <div class="ui left icon action input">
+                <a class="ui button" href="/login/customer">As Customer</a>
+                <a class="ui button yellow" href="/login/admin">As Admin</a>
+                <a class="ui button green" href="/login/employee">As Employee</a>
+            </div>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <a href="/signup" class="ui teal button">Signup</a>
         </div>
-        <a href="/signup" class="ui teal button">Signup</a>
-        </div>
-      </div>
+    </div>
     </div>
 </body>

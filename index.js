@@ -184,6 +184,7 @@ app.post('/signup', (req, res) => {
 
 app.get('/logout', (req, res) => {
     req.logout();
+    req.flash('success', 'Logged you out');
     res.redirect('/');
 })
 
