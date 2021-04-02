@@ -48,6 +48,9 @@
                                     </p>
                                 </div>
                                 <div class="extra">
+                                    <p>
+                                        Submitted by: <%=blog.author.username%> (<%= blog.created.toDateString() %>)
+                                    </p>
                                     <a class="ui button yellow" href="/admin/<%= blog._id %>/approve">Approve</a>
                                 </div>
                             </div>

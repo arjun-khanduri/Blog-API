@@ -190,7 +190,7 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/customer', isLoggedInCustomer, (req, res) => {
-    Blog.find({}, (err, foundBlogs) => {
+    Blog.find({author: { id : req.user._id, username: req.user.username }}, (err, foundBlogs) => {
         if (err)
             console.log(err);
         else
@@ -207,7 +207,11 @@ app.post('/customer/new', isLoggedInCustomer, (req, res) => {
     const body = req.body.body;
     const isVerified = false;
     const isApproved = false;
-    const blog = { title: title, body: body, isApproved: isApproved, isVerified: isVerified };
+    const author = { 
+        id: req.user._id,
+        username: req.user.username
+    };
+    const blog = { title: title, body: body, isApproved: isApproved, isVerified: isVerified, author: author };
     Blog.create(blog, (err, newBlog) => {
         if (err)
             res.render('new');

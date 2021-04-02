@@ -48,6 +48,9 @@
                                     </p>
                                 </div>
                                 <div class="extra">
+                                    <p>
+                                        Submitted by: <%=blog.author.username%> (<%= blog.created.toDateString() %>)
+                                    </p>
                                     <a class="ui button positive" href="/employee/<%= blog._id %>/verify">Verify</a>
                                 </div>
                             </div>
@@ -57,8 +60,8 @@
             </div>
         </div>
         <% } else {%>
-            <div class = "login-card">
+            <div class="login-card">
                 <h1> No blogs to verify </h1>
             </div>
-        <% } %>
+            <% } %>
 </body>
