@@ -190,7 +190,7 @@ app.get('/logout', (req, res) => {
 
 
 app.get('/customer', isLoggedInCustomer, (req, res) => {
-    Blog.find({author: { id : req.user._id, username: req.user.username }}, (err, foundBlogs) => {
+    Blog.find({ author: { id: req.user._id, username: req.user.username } }, (err, foundBlogs) => {
         if (err)
             console.log(err);
         else
@@ -199,7 +199,7 @@ app.get('/customer', isLoggedInCustomer, (req, res) => {
 });
 
 app.get('/customer/new', isLoggedInCustomer, (req, res) => {
-    res.render('new');
+    res.render('new', { name: req.user.username });
 });
 
 app.post('/customer/new', isLoggedInCustomer, (req, res) => {
@@ -207,7 +207,7 @@ app.post('/customer/new', isLoggedInCustomer, (req, res) => {
     const body = req.body.body;
     const isVerified = false;
     const isApproved = false;
-    const author = { 
+    const author = {
         id: req.user._id,
         username: req.user.username
     };
@@ -251,7 +251,7 @@ app.get('/employee', isLoggedInEmployee, (req, res) => {
         if (err)
             console.log(err);
         else
-            res.render('employee', { blogs: foundBlogs });
+            res.render('employee', { blogs: foundBlogs, name: req.user.username });
     });
 });
 
