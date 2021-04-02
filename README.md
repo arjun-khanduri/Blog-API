@@ -1,4 +1,4 @@
-# Pixel-Mind-It-Solutions-API
+# Blog-API
 
 ## Instructions to deploy locally:
 
