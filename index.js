@@ -97,7 +97,8 @@ app.get('/login/employee', (req, res) => {
 app.post('/login/admin', passport.authenticate('adminLocal',
     {
         successRedirect: '/admin',
-        failureRedirect: '/login/admin'
+        failureRedirect: '/login/admin',
+        failureFlash: true
     }), (req, res) => {
 
     });
@@ -105,7 +106,8 @@ app.post('/login/admin', passport.authenticate('adminLocal',
 app.post('/login/employee', passport.authenticate('employeeLocal',
     {
         successRedirect: '/employee',
-        failureRedirect: '/login/employee'
+        failureRedirect: '/login/employee',
+        failureFlash: true
     }), (req, res) => {
 
     });
@@ -113,7 +115,8 @@ app.post('/login/employee', passport.authenticate('employeeLocal',
 app.post('/login/customer', passport.authenticate('customerLocal',
     {
         successRedirect: '/customer',
-        failureRedirect: '/login/customer'
+        failureRedirect: '/login/customer', 
+        failureFlash: true
     }), (req, res) => {
 
     });
