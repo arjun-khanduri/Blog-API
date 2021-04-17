@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const logger = require('morgan');
 const LocalStrategy = require('passport-local');
 const flash = require('connect-flash');
 const Blog = require('./models/blogSchema');
@@ -13,6 +14,7 @@ const employeeUser = require('./models/employeeUserSchema');
 mongoose.connect("mongodb://localhost:27017/Blog-API", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 app.use(express.static('public'));
+app.use(logger('dev'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
