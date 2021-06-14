@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arjun-khanduri/Pixel-Mind-It-Solutions-API.git"
+    "url": "git+https://github.com/arjun-khanduri/Blog-API.git"
   },
   "author": "Arjun Khanduri",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arjun-khanduri/Pixel-Mind-It-Solutions-API/issues"
+    "url": "https://github.com/arjun-khanduri/Blog-API/issues"
   },
-  "homepage": "https://github.com/arjun-khanduri/Pixel-Mind-It-Solutions-API#readme",
+  "homepage": "https://github.com/arjun-khanduri/Blog-API#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
