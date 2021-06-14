@@ -7,8 +7,8 @@ Make sure you have Node.js and MongoDB installed on your machine.
 Follow the commands to clone the repository on your local machine.
 
 ```sh
-git clone https://github.com/arjun-khanduri/Pixel-Mind-It-Solutions-API.git
-cd Pixel-Mind-It-Solutions-API
+git clone https://github.com/arjun-khanduri/Blog-API.git
+cd Blog-API
 ```
 To install all dependancies for the application, run the following command
 
